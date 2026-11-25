@@ -80,7 +80,7 @@ export default function MyOperationsPage() {
           {items.map((it) => (
             <li key={(it as Operations<Booking> & { id: number }).id}>
 
-              {it.status === "ACTIVE" && (
+              {(it as Operations<Booking> & {status: "ACTIVE" | "CANCELLED" | "COMPLETED"}).status === "ACTIVE" && (
                 <button
                   type="button"
                   onClick={() => handleAccion(it)}
