@@ -5,7 +5,7 @@ export type Item = {
   id: number;
   name: string;
   specialty: string;
-  modality: string;
+  modality: 'ONLINE' | 'OFFLINE' | 'HYBRID';
   availableSlots: number;
   description: string;
 };
@@ -40,7 +40,10 @@ export async function sendAction(id: string | number, body: ActionBody) {
 
 export type Booking = {
   id: number;
-  mentorId: number;
+  resourceId: number;
+  resourceName: string;
+  topic: string;
+  status: "ACTIVE" | "CANCELLED" | "COMPLETED";
 }
 
 export type Operations<Booking> = Booking[];
@@ -51,5 +54,5 @@ export async function myOperations() {
 }
 
 export async function cancelBooking(id: number) {
-    await api.patch(`/api/me/requests/${id}/cancel`);
+    await api.patch(`/api/requests/${id}/cancel`);
 }
